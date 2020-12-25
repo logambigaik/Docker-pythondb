@@ -1,8 +1,9 @@
 # flaskmysql
 
 
-pip3 install flask
-pip3 install flask-mysqldb
+pip install flask
+pip install flask-mysql
+pip install pymysql
 
 mysql -u root -p 
 default password 1234
