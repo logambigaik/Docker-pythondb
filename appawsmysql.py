@@ -5,7 +5,7 @@ import pymysql
 app= Flask(__name__)
 
 mysql-url='mysql://database-1.cgoiztchij9u.us-east-1.rds.amazonaws.com:3306/mysql'
-mysql=pymysql.connect(db='flaskapp', user='admin', passwd='loga@1983', host=mysql-url)
+mysql=pymysql.connect(db='flaskapp', user='root', passwd='password1', host=mysql-url)
 
 @app.route('/',methods=['GET','POST'])
 
