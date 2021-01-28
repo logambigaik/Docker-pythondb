@@ -2,7 +2,9 @@
 
 
 pip install flask
+
 pip install flask-mysql
+
 pip install pymysql
 
 mysql -u root -p 
