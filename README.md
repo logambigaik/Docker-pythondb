@@ -61,5 +61,8 @@ Once the database is ready, copy the below details:
     Enter password as password1
     
  ![image](https://user-images.githubusercontent.com/54719289/106193279-4e06e300-61d3-11eb-927e-7e59de010c08.png)
+ 
+ 
+ Note: CHange this password in python application
    
  
