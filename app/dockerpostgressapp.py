@@ -1,3 +1,4 @@
+import random
 from flask import Flask, render_template,request
 from flask import jsonify
 from sqlalchemy import create_engine
@@ -20,38 +21,46 @@ db=scoped_session(sessionmaker(bind=engine))
 
 def index():
     #cur=db.cursor()
-    db.execute("CREATE TABLE IF NOT EXISTS Userdetail(number BIGINT,firstname VARCHAR(20),lastname VARCHAR(20),timestamp BIGINT)")	
+    db.execute("CREATE TABLE IF NOT EXISTS Userdetail(number BIGINT,firstname VARCHAR(20),lastname VARCHAR(20),timestamp BIGINT)")
     db.commit()
- 			
+
     if request.method == "POST":
         details = request.form
-        add_new_row(n)
+        #num=add_new_row(n)
         firstName = details['fname']
         lastName = details['lname']
         #cur1=db.cursor()
-        db.execute("INSERT INTO Userdetail(number,firstname, lastname,timestamp) VALUES (:number,:fname, :lname,:timestamp)",{str(n),"fname":firstName,"lname":lastName,str(int(round(time.time() * 1000)))})
+        db.execute("INSERT INTO Userdetail(number,firstname, lastname,timestamp) VALUES (" + \
+                                           str(num) + ','   + \
+                                           firstName + ','  + \
+                                           lastName + ','   + \
+                                           str(int(round(time.time() * 1000))) + ");")
+
         db.commit()
         db.close()
         return 'success'
     return render_template('index.html')
- 
-    def get_last_row():
+
+def get_last_row():
     # Retrieve the last number inserted inside the 'numbers'
-      query = "" + \
+    query = "" + \
             "SELECT number,firstname,lastname " + \
             "FROM UserDetail " + \
             "WHERE timestamp >= (SELECT max(timestamp) FROM numbers)" +\
             "LIMIT 1"
 
-      result_set = db.execute(query)  
-      for (r) in result_set:  
-          return r[0]
+    result_set = db.execute(query)
+    for (r) in result_set:
+        return r[0]
 
 if __name__ == '__main__':
-    #app.run(host='0.0.0.0',port=5000,debug=True)
-    app.run(debug=True)
-    
+     #app.run(host='0.0.0.0',port=5000,debug=True)
+
+
      while True:
-        add_new_row(random.randint(1,100000))
+        num=(random.randint(1,100000))
         print('The last value insterted is: {}'.format(get_last_row()))
         time.sleep(5)
+
+     app.run(debug=True)
+
