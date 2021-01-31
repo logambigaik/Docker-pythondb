@@ -31,9 +31,9 @@ docker-entrypoint-initb.d:
          
 #requirements.txt
 
-flask
-sqlalchemy
-psycopg2
+      flask
+      sqlalchemy
+      psycopg2
 
 
 #Python dockerfile:
