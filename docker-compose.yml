@@ -2,5 +2,21 @@
     services:
     app :
         build: ./app/
+        links:
+        - pgadmin4
+        
     db:
         build: ./database/
+        volumes:
+         - /var/postgres/data:/var/lib/postgres/data
+
+     pgadmin4:
+         image: dpage/pgadmin4
+         restart: always
+         environment:
+           PGADMIN_DEFAULT_EMAIL: 'klogambigai@gmail.com'
+           PGADMIN_DEFAULT_PASSWORD: 'abcd123'
+         ports:
+         - 80:80
+         links:
+         - db
