@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+    app:
+        image: web1:v1        
+        
+        ports:
+        - 8000:5000
+        links:
+        - db 
+        networks:
+        - python-postgres
+        
+    db:
+        image: db:v1
+        
+        ports:
+        - 5432:5432
+        volumes:
+         - /var/postgres/data:/var/lib/postgres/data
+        networks:
+         - python-postgres
+
+networks:
+  python-postgres:
+       driver :  overlay
+       

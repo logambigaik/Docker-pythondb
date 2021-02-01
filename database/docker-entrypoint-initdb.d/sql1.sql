@@ -1,7 +1,5 @@
-CREATE TABLE IF NOT EXISTS numbers (
-      number    BIGINT,
+CREATE TABLE IF NOT EXISTS userdetail (
       firstname VARCHAR(20),
-      lastname  VARCHAR(20),
-      timestamp BIGINT
+      lastname  VARCHAR(20)
 );
 

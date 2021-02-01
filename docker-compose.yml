@@ -1,22 +1,26 @@
- version: "3.8"
-    services:
-    app :
-        build: ./app/
+version: "3.8"
+services:
+    app:
+        build: ./app/        
+        container_name: app1
+        ports:
+        - 8000:5000
         links:
-        - pgadmin4
+        - db 
+        networks:
+        - python-postgres
         
     db:
         build: ./database/
+        container_name: db1
+        ports:
+        - 5432:5432
         volumes:
          - /var/postgres/data:/var/lib/postgres/data
+        networks:
+         - python-postgres
 
-     pgadmin4:
-         image: dpage/pgadmin4
-         restart: always
-         environment:
-           PGADMIN_DEFAULT_EMAIL: 'klogambigai@gmail.com'
-           PGADMIN_DEFAULT_PASSWORD: 'abcd123'
-         ports:
-         - 80:80
-         links:
-         - db
+networks:
+  python-postgres:
+       driver : bridge 
+       name   : sample 
