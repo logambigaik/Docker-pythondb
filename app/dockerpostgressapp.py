@@ -1,20 +1,15 @@
 import random
-from flask import Flask, render_template,request
-from flask import jsonify
-from sqlalchemy import create_engine
+
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime,timedelta
+import os
 #from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import scoped_session, sessionmaker
 
-app=Flask(__name__)
-conn_str = 'postgresql://{username}:{password}@localhost:5432/{database}'.format(
-            username='postgres',
-            password='password1',
-            database='postgres'
-         )
+app = Flask(__name__)
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:userpass@hostname:5432/testdb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password1@db:5432/postgres'
+db = SQLAlchemy(app)
 
-engine=create_engine(conn_str)
-db=scoped_session(sessionmaker(bind=engine))
-#db=SQLAlchemy(app)
 
 
 @app.route('/',methods=['GET','POST'])
