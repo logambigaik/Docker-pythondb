@@ -67,4 +67,33 @@ Once the database is ready, copy the below details:
  
  Note: CHange this password in python application
    
+# Docker run with rds host:
+
+```
+ docker run --name mysql  --env='MYSQL_ROOT_PASSWORD=admin123'  -h db1.cdcey7nbdoev.us-east-1.rds.amazonaws.com -p 3306:3306 -d mysql/mysql-server:latest
+ docker exec -it mysql bash
+ mysql -u root -p
+ show databases;
+ create database user;
+ use user;
+ create table userdetail(empno integer, empname varchar(20));
+ insert into userdetail values(101,'Archu');
+ insert into userdetail values(102,'Architha');
+ select * from userdetail;
  
+mysql> select * from userdetail;
++-------+----------+
+| empno | empname  |
++-------+----------+
+|   101 | Archu    |
+|   102 | Architha |
++-------+----------+
+2 rows in set (0.00 sec)
+
+
+
+        
+```
+![image](https://user-images.githubusercontent.com/54719289/120368631-3323b700-c30a-11eb-944a-3de2c547737e.png)
+
+
