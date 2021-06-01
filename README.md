@@ -97,3 +97,11 @@ mysql> select * from userdetail;
 ![image](https://user-images.githubusercontent.com/54719289/120368631-3323b700-c30a-11eb-944a-3de2c547737e.png)
 
 
+
+# Docker run with rds host and volume:
+
+```
+ docker run --name mysql  -v /tmp/storedb:/var/lib/mysql --env='MYSQL_ROOT_PASSWORD=admin123'  -h db1.cdcey7nbdoev.us-east-1.rds.amazonaws.com -p 3306:3306 -d mysql/mysql-server:latest
+ 
+ docker exec mysql sh -c 'exec mysqldump --all-databases -u root -p admin123' > /tmp/dump.sql
+```
